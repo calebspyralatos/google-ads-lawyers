@@ -139,6 +139,19 @@ const testimonialVideos = [
 
 const TestimonialCarousel = () => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const iframeRefs = React.useRef<(HTMLIFrameElement | null)[]>([]);
+  const touchStartX = React.useRef<number>(0);
+  const touchEndX = React.useRef<number>(0);
+
+  // Pause all videos when changing slides
+  React.useEffect(() => {
+    iframeRefs.current.forEach((iframe, index) => {
+      if (iframe && index !== currentIndex) {
+        // Send pause command to Vimeo player
+        iframe.contentWindow?.postMessage('{"method":"pause"}', '*');
+      }
+    });
+  }, [currentIndex]);
 
   const handleNext = React.useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonialVideos.length);
@@ -148,9 +161,38 @@ const TestimonialCarousel = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonialVideos.length) % testimonialVideos.length);
   };
 
+  // Touch handlers for swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeDistance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 50; // Minimum swipe distance to trigger
+
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        // Swiped left - go to next
+        handleNext();
+      } else {
+        // Swiped right - go to previous
+        handlePrev();
+      }
+    }
+  };
+
   return (
     <>
-      <div className="relative w-full h-full flex items-center justify-center">
+      <div
+        className="relative w-full h-full flex items-center justify-center touch-pan-y"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {testimonialVideos.map((video, index) => {
           const offset = index - currentIndex;
           const total = testimonialVideos.length;
@@ -167,7 +209,8 @@ const TestimonialCarousel = () => {
               key={index}
               className={cn(
                 'absolute w-64 h-[360px] md:w-[400px] md:h-[600px] transition-all duration-500 ease-in-out',
-                'flex items-center justify-center'
+                'flex items-center justify-center',
+                !isCenter && 'pointer-events-none'
               )}
               style={{
                 transform: `
@@ -182,15 +225,26 @@ const TestimonialCarousel = () => {
               }}
             >
               <div className="w-full h-full flex flex-col">
-                <div className="relative flex-1 rounded-3xl border-2 border-border/50 shadow-2xl overflow-hidden bg-card">
-                  <iframe
-                    src={video.vimeoUrl}
-                    className="w-full h-full"
-                    frameBorder="0"
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                    allowFullScreen
-                    title={video.alt}
-                  ></iframe>
+                <div className="relative flex-1 rounded-3xl shadow-2xl overflow-visible">
+                  {/* Green gradient border for active video */}
+                  {isCenter && (
+                    <div className="absolute -inset-[1.5px] rounded-3xl bg-gradient-to-r from-green-500 via-emerald-400 to-green-600 -z-10" />
+                  )}
+
+                  <div className={cn(
+                    "relative w-full h-full rounded-3xl overflow-hidden bg-card",
+                    isCenter ? "border-0" : "border-2 border-border/50"
+                  )}>
+                    <iframe
+                      ref={(el) => (iframeRefs.current[index] = el)}
+                      src={video.vimeoUrl}
+                      className="absolute inset-0 w-full h-full"
+                      frameBorder="0"
+                      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                      allowFullScreen
+                      title={video.alt}
+                    ></iframe>
+                  </div>
                 </div>
                 <div className="pt-2 md:pt-4">
                   <p className="text-base md:text-xl font-bold text-white text-center">{video.name}</p>
@@ -286,12 +340,12 @@ const Index = () => {
             mixBlendMode: 'screen'
           }}
         />
-        <div className="absolute top-4 -right-2 md:top-8 md:right-8 z-10 scale-[0.65] md:scale-100">
+        <div className="absolute top-4 -right-2 md:top-8 md:right-8 z-50 scale-[0.65] md:scale-100">
           <MovingBorderButton duration={6000} onClick={() => setIsCalendlyOpen(true)}>
             Book a Call
           </MovingBorderButton>
         </div>
-        <div className="max-w-[1200px] mx-auto flex flex-col md:grid md:grid-cols-2 gap-3 md:gap-12 items-center relative z-10">
+        <div className="max-w-[1200px] mx-auto flex flex-col md:grid md:grid-cols-2 gap-0 md:gap-12 items-center relative z-10">
           {/* Image first on mobile, second on desktop */}
           <div className="relative animate-fade-in-up flex justify-center items-center md:-mt-16 order-1 md:order-2">
             <img
@@ -302,9 +356,11 @@ const Index = () => {
           </div>
 
           <div className="space-y-2 md:space-y-4 animate-fade-in text-center md:text-left order-2 md:order-1">
-            <h1 className="text-3xl md:text-7xl font-bold leading-relaxed">
-              I specialize in Google Ads for local businesses. <span className="inline-block px-3 text-white rounded-full" style={{ backgroundColor: '#385f3e', verticalAlign: 'middle', paddingTop: '0.5rem', paddingBottom: '0.75rem' }}>Only.</span>
-            </h1>
+            <div className="backdrop-blur-sm rounded-2xl p-4 shadow-lg md:p-0 md:bg-transparent md:backdrop-blur-none md:shadow-none md:rounded-none" style={{ backgroundColor: '#131316' }}>
+              <h1 className="text-3xl md:text-7xl font-bold leading-relaxed">
+                I specialize in Google Ads for<br className="hidden md:block" /><span className="inline-block px-3 text-white rounded-full whitespace-nowrap md:mt-3" style={{ backgroundColor: '#385f3e', verticalAlign: 'middle', paddingTop: '0.5rem', paddingBottom: '0.75rem' }}>local businesses.</span> <span className="underline">Only.</span>
+              </h1>
+            </div>
             <div className="space-y-2 md:space-y-4">
               <p className="text-base md:text-xl text-white">
                 If you run a local business, I will help you generate more revenue by increasing your number of leads, calls, and store visits.
@@ -332,7 +388,7 @@ const Index = () => {
                 </h2>
                 <p className="text-base md:text-xl text-white leading-relaxed">
                   I've built my career on UpWork as a freelancer and I specialize in Google Ads and Google Local Ads,<br className="hidden md:inline" />
-                  <span className="inline-block px-2 text-white rounded-full mt-2" style={{ backgroundColor: '#385f3e', paddingTop: '0.25rem', paddingBottom: '0.5rem' }}>primarily for local businesses.</span>
+                  <span className="inline-block px-2 text-white rounded-full mt-2" style={{ backgroundColor: '#385f3e', paddingTop: '0.25rem', paddingBottom: '0.5rem' }}>only for local businesses.</span>
                 </p>
               </div>
 
@@ -447,13 +503,24 @@ const Index = () => {
 
       {/* What It's Like Working With Me */}
       <section className="px-4 md:px-8 lg:px-16 py-12 md:py-20 bg-card/30 relative overflow-hidden">
-        {/* Smooth spotlight on the left */}
+        {/* Ambient animated background gradients */}
         <div
-          className="absolute top-1/2 -left-64 -translate-y-1/2 w-[500px] h-[500px] rounded-full pointer-events-none opacity-25"
+          className="absolute top-1/4 -left-40 w-[600px] h-[600px] rounded-full pointer-events-none opacity-20 animate-pulse"
           style={{
-            background: 'radial-gradient(circle at center, hsl(145, 51%, 35%) 0%, hsl(145, 51%, 32%) 10%, hsl(145, 51%, 29%) 20%, hsl(145, 51%, 26%) 30%, hsl(145, 51%, 22%) 40%, hsl(145, 51%, 18%) 50%, hsl(145, 51%, 16%) 60%, transparent 80%)',
-            filter: 'blur(120px)',
-            mixBlendMode: 'screen'
+            background: 'radial-gradient(circle at center, hsl(145, 51%, 40%) 0%, hsl(145, 51%, 30%) 20%, transparent 70%)',
+            filter: 'blur(100px)',
+            mixBlendMode: 'screen',
+            animationDuration: '4s'
+          }}
+        />
+        <div
+          className="absolute top-1/3 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none opacity-15 animate-pulse"
+          style={{
+            background: 'radial-gradient(circle at center, hsl(200, 51%, 40%) 0%, hsl(180, 51%, 30%) 20%, transparent 70%)',
+            filter: 'blur(100px)',
+            mixBlendMode: 'screen',
+            animationDuration: '5s',
+            animationDelay: '1s'
           }}
         />
         <div className="max-w-[1400px] mx-auto relative z-10">
@@ -475,7 +542,7 @@ const Index = () => {
             Recent Projects
           </h2>
           <div className="text-center text-white mb-4 md:mb-6 text-sm md:text-xl">
-            <p>All conversions and CPA reflect calls, form submissions, and/or store visits, only.</p>
+            <p>All conversions and CPL reflect calls, form submissions, and/or store visits, only.</p>
             <p>No soft conversions are included, such as clicks, page views, etc.</p>
           </div>
           <div className="h-1 w-32 bg-gradient-to-r from-primary to-accent mx-auto mb-8 md:mb-16 rounded-full" />
@@ -497,7 +564,7 @@ const Index = () => {
                     </div>
                   </div>
                   <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
-                    <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">CPA</div>
+                    <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">CPL</div>
                     <div className="text-2xl md:text-4xl font-bold" style={{ color: '#c5fc68' }}>
                       <CountUpNumber value="£21.67" />
                     </div>
@@ -544,7 +611,7 @@ const Index = () => {
                     </div>
                   </div>
                   <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
-                    <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">CPA</div>
+                    <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">CPL</div>
                     <div className="text-2xl md:text-4xl font-bold" style={{ color: '#c5fc68' }}>
                       <CountUpNumber value="$3.10" />
                     </div>
@@ -638,7 +705,7 @@ const Index = () => {
                   And each time clients use it, together with Google Ads, it has helped them outrank their competition, stand out in their area & niche, and increase their revenue consistently.
                 </p>
 
-                <p>
+                <p className="pt-4 md:pt-0">
                   <span className="inline-block px-2 text-white rounded-full text-base md:text-xl" style={{ backgroundColor: '#385f3e', paddingTop: '0.25rem', paddingBottom: '0.5rem' }}>Every client I work with gets free lifetime access to it.</span>
                 </p>
               </div>
@@ -782,7 +849,7 @@ const Index = () => {
                 image: nathanielC
               }
             ].map((testimonial, index) => (
-              <CarouselItem key={index}>
+              <CarouselItem key={index} className="basis-[85%]">
                 <Card
                   onClick={() => setSelectedTestimonial(testimonial)}
                   className="p-4 bg-card/80 backdrop-blur-sm border border-transparent hover:border-[#DF7606] transition-all shadow-xl cursor-pointer mx-auto max-w-[300px]"
@@ -823,8 +890,12 @@ const Index = () => {
         </div>
 
         {/* Desktop auto-scroll */}
-        <div className="hidden md:block relative">
-          <div className="flex animate-scroll-right gap-8 w-max">
+        <div className="hidden md:block relative group">
+          <div className={cn(
+            "flex animate-scroll-right gap-8 w-max",
+            "group-hover:[animation-play-state:paused]",
+            selectedTestimonial && "[animation-play-state:paused]"
+          )}>
             {[
               {
                 name: "Adam K.",
@@ -971,7 +1042,7 @@ const Index = () => {
       {/* What I Can Promise */}
       <section className="px-4 md:px-8 lg:px-16 pt-6 md:pt-8 pb-12 md:pb-20 bg-gradient-to-b from-card/20 to-background relative">
         <div className="max-w-[1000px] mx-auto relative z-10">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-0 md:gap-12 items-center">
             <div className="relative animate-fade-in flex justify-center">
               <img
                 src={promiseProfile}
@@ -981,27 +1052,29 @@ const Index = () => {
             </div>
 
             <div className="space-y-4 md:space-y-6 animate-fade-in-up flex justify-center md:block">
-              <div className="space-y-4 md:space-y-6 max-w-[320px] md:max-w-none">
-                <div>
-                  <h2 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 text-left">
-                    What I <span className="inline-block px-2 md:px-3 text-white rounded-full text-2xl md:text-5xl" style={{ backgroundColor: '#de3323', verticalAlign: 'middle', paddingTop: '0.25rem', paddingBottom: '0.5rem' }}>Can't</span> Promise
-                  </h2>
-                  <div className="space-y-2 md:space-y-4 text-base md:text-2xl text-white text-left">
-                    <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />Overnight Success.</p>
-                    <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />You'll become a millionaire.</p>
-                    <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />Every month will be profitable.</p>
+              <div className="relative backdrop-blur-sm rounded-2xl p-4 md:p-7 shadow-lg" style={{ backgroundColor: '#131316' }}>
+                <div className="space-y-4 md:space-y-6 max-w-[320px] md:max-w-none">
+                  <div>
+                    <h2 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 text-left flex items-center flex-wrap gap-2 md:gap-3">
+                      <span>What I</span> <span className="inline-block px-2 md:px-3 text-white rounded-full text-2xl md:text-5xl" style={{ backgroundColor: '#de3323' }}>Can't</span> <span>Promise</span>
+                    </h2>
+                    <div className="space-y-2 md:space-y-4 text-base md:text-2xl text-white text-left">
+                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />Overnight success.</p>
+                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />That you'll become a millionaire.</p>
+                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />That every month will be profitable.</p>
+                    </div>
                   </div>
-                </div>
 
-                <div className="border-t border-border/30 pt-4 md:pt-6">
-                  <h2 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 text-left">
-                    What I <span className="inline-block px-2 md:px-3 text-white rounded-full text-2xl md:text-5xl" style={{ backgroundColor: '#385f3e', verticalAlign: 'middle', paddingTop: '0.25rem', paddingBottom: '0.5rem' }}>Can</span> Promise
-                  </h2>
-                  <div className="space-y-2 md:space-y-4 text-base md:text-2xl text-white text-left">
-                    <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><CheckCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#6bc741' }} />Always being 100% honest with you.</p>
-                    <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><CheckCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#6bc741' }} />Always me managing your ads.</p>
-                    <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><CheckCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#6bc741' }} />Always being the best at what I do.</p>
-                    <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><CheckCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#6bc741' }} />Always investing and treating your money, like my own.</p>
+                  <div className="border-t border-border/30 pt-4 md:pt-6">
+                    <h2 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 text-left flex items-center flex-wrap gap-2 md:gap-3">
+                      <span>What I</span> <span className="inline-block px-2 md:px-3 text-white rounded-full text-2xl md:text-5xl" style={{ backgroundColor: '#385f3e' }}>Can</span> <span>Promise</span>
+                    </h2>
+                    <div className="space-y-2 md:space-y-4 text-base md:text-2xl text-white text-left">
+                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><CheckCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#6bc741' }} />Always being 100% honest with you.</p>
+                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><CheckCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#6bc741' }} />Always managing your ads myself.</p>
+                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><CheckCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#6bc741' }} />Always being the best at what I do.</p>
+                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><CheckCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#6bc741' }} />Always investing and treating your money like my own.</p>
+                    </div>
                   </div>
                 </div>
               </div>
