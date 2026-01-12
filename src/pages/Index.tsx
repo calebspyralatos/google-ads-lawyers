@@ -85,6 +85,7 @@ import alexC from "@/assets/Alex Chen.png";
 import andyG from "@/assets/Andy G.jpeg";
 import danielB from "@/assets/Daniel.webp";
 import nathanielC from "@/assets/Nathaniel.jpg";
+import websiteLogo from "@/assets/website-logo.png";
 
 // Logo imports
 import logo1 from "@/assets/logos/1.png";
@@ -228,7 +229,7 @@ const TestimonialCarousel = () => {
                 <div className="relative flex-1 rounded-3xl shadow-2xl overflow-visible">
                   {/* Green gradient border for active video */}
                   {isCenter && (
-                    <div className="absolute -inset-[1.5px] rounded-3xl bg-gradient-to-r from-green-500 via-emerald-400 to-green-600 -z-10" />
+                    <div className="absolute -inset-[1.5px] rounded-3xl bg-gradient-to-r from-green-800 via-emerald-800 to-green-900 -z-10" />
                   )}
 
                   <div className={cn(
@@ -340,12 +341,15 @@ const Index = () => {
             mixBlendMode: 'screen'
           }}
         />
-        <div className="absolute top-4 -right-2 md:top-8 md:right-8 z-50 scale-[0.65] md:scale-100">
+        <div className="absolute top-12 left-4 -translate-y-1/2 md:left-1/2 md:-translate-x-1/2 md:top-16 z-50">
+          <img src={websiteLogo} alt="Logo" className="h-20 md:h-64 w-auto" />
+        </div>
+        <div className="absolute top-12 -translate-y-1/2 -right-2 md:top-16 md:right-8 z-50 scale-[0.65] md:scale-100">
           <MovingBorderButton duration={6000} onClick={() => setIsCalendlyOpen(true)}>
             Book a Call
           </MovingBorderButton>
         </div>
-        <div className="max-w-[1200px] mx-auto flex flex-col md:grid md:grid-cols-2 gap-0 md:gap-12 items-center relative z-10">
+        <div className="max-w-[1200px] mx-auto flex flex-col md:grid md:grid-cols-2 gap-0 md:gap-12 items-center relative z-10 mt-24 md:mt-32">
           {/* Image first on mobile, second on desktop */}
           <div className="relative animate-fade-in-up flex justify-center items-center md:-mt-16 order-1 md:order-2">
             <img
@@ -356,7 +360,7 @@ const Index = () => {
           </div>
 
           <div className="space-y-2 md:space-y-4 animate-fade-in text-center md:text-left order-2 md:order-1">
-            <div className="backdrop-blur-sm rounded-2xl p-4 shadow-lg md:p-0 md:bg-transparent md:backdrop-blur-none md:shadow-none md:rounded-none" style={{ backgroundColor: '#131316' }}>
+            <div className="backdrop-blur-sm rounded-2xl p-4 shadow-lg md:p-0 md:bg-transparent md:backdrop-blur-none md:shadow-none md:rounded-none bg-[#131316] md:!bg-transparent">
               <h1 className="text-3xl md:text-7xl font-bold leading-relaxed">
                 I specialize in Google Ads for<br className="hidden md:block" /><span className="inline-block px-3 text-white rounded-full whitespace-nowrap md:mt-3" style={{ backgroundColor: '#385f3e', verticalAlign: 'middle', paddingTop: '0.5rem', paddingBottom: '0.75rem' }}>local businesses.</span> <span className="underline">Only.</span>
               </h1>
@@ -1043,7 +1047,7 @@ const Index = () => {
       <section className="px-4 md:px-8 lg:px-16 pt-6 md:pt-8 pb-12 md:pb-20 bg-gradient-to-b from-card/20 to-background relative">
         <div className="max-w-[1000px] mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-0 md:gap-12 items-center">
-            <div className="relative animate-fade-in flex justify-center">
+            <div className="relative animate-fade-in flex justify-center md:-mt-32">
               <img
                 src={promiseProfile}
                 alt="Caleb Promise"
@@ -1098,6 +1102,10 @@ const Index = () => {
 
           <div className="relative p-4 md:p-8 rounded-3xl max-w-[1200px] mx-auto" style={{ background: 'linear-gradient(135deg, #131316 0%, #385e3d 100%)' }}>
             <div className="calendly-inline-widget" data-url="https://calendly.com/googleadsbycaleb/new-meeting" style={{ minWidth: '320px', height: '700px' }}></div>
+          </div>
+
+          <div className="flex justify-center mt-12 md:mt-16">
+            <img src={websiteLogo} alt="Logo" className="h-48 md:h-80 w-auto" />
           </div>
         </div>
       </section>
