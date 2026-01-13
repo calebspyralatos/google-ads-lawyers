@@ -575,13 +575,13 @@ const Index = () => {
                   <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
                     <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">Amount Spent</div>
                     <div className="text-2xl md:text-4xl font-bold" style={{ color: '#6bc741' }}>
-                      <CountUpNumber value="£9.6K" />
+                      <CountUpNumber value="$9.6K" />
                     </div>
                   </div>
                   <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
                     <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">CPL</div>
                     <div className="text-2xl md:text-4xl font-bold" style={{ color: '#c5fc68' }}>
-                      <CountUpNumber value="£21.67" />
+                      <CountUpNumber value="$19.63" />
                     </div>
                   </div>
                 </div>
@@ -655,7 +655,7 @@ const Index = () => {
                     </div>
                   </div>
                   <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
-                    <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">CPA</div>
+                    <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">CPL</div>
                     <div className="text-2xl md:text-4xl font-bold" style={{ color: '#c5fc68' }}>
                       <CountUpNumber value="$40.28" />
                     </div>
