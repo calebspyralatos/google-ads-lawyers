@@ -91,12 +91,13 @@ export const ProjectImage = ({ src, alt, className = "", interactive = false }: 
             <X className="h-6 w-6 md:h-5 md:w-5" style={{ color: '#000000' }} />
             <span className="sr-only">Close</span>
           </button>
-          <div className="relative w-full h-full overflow-auto">
+          <div className="relative w-full h-full overflow-auto" style={{ touchAction: 'pan-x pan-y pinch-zoom' }}>
             <img
               src={src}
               alt={alt}
               className="w-full h-auto"
-              style={{ touchAction: 'pinch-zoom' }}
+              style={{ touchAction: 'pan-x pan-y pinch-zoom', userSelect: 'none' }}
+              draggable="false"
             />
           </div>
         </DialogContent>

@@ -107,32 +107,32 @@ import logo16 from "@/assets/logos/16.png";
 
 const testimonialVideos = [
   {
-    vimeoUrl: "https://player.vimeo.com/video/1149226528?h=ed8c811dcf&title=0&byline=0&portrait=0",
+    vimeoUrl: "https://player.vimeo.com/video/1154051482?title=0&byline=0&portrait=0",
     alt: "Client Testimonial 1",
     name: "Jonathan R."
   },
   {
-    vimeoUrl: "https://player.vimeo.com/video/1149226571?h=2cccad25cf&title=0&byline=0&portrait=0",
+    vimeoUrl: "https://player.vimeo.com/video/1154051560?title=0&byline=0&portrait=0",
     alt: "Client Testimonial 2",
     name: "Daniel J."
   },
   {
-    vimeoUrl: "https://player.vimeo.com/video/1149226589?h=34752acc9d&title=0&byline=0&portrait=0",
+    vimeoUrl: "https://player.vimeo.com/video/1154051654?title=0&byline=0&portrait=0",
     alt: "Client Testimonial 3",
-    name: "Allysa C."
+    name: "Emily L."
   },
   {
-    vimeoUrl: "https://player.vimeo.com/video/1149226609?h=ce237ca0e9&title=0&byline=0&portrait=0",
+    vimeoUrl: "https://player.vimeo.com/video/1154051753?title=0&byline=0&portrait=0",
     alt: "Client Testimonial 4",
     name: "Logan C."
   },
   {
-    vimeoUrl: "https://player.vimeo.com/video/1149226621?h=a5731a2cac&title=0&byline=0&portrait=0",
+    vimeoUrl: "https://player.vimeo.com/video/1154051832?title=0&byline=0&portrait=0",
     alt: "Client Testimonial 5",
-    name: "Emily L."
+    name: "Allyca C."
   },
   {
-    vimeoUrl: "https://player.vimeo.com/video/1149226640?h=ce32bdbc5b&title=0&byline=0&portrait=0",
+    vimeoUrl: "https://player.vimeo.com/video/1154051869?title=0&byline=0&portrait=0",
     alt: "Client Testimonial 6",
     name: "John B."
   }
@@ -190,10 +190,21 @@ const TestimonialCarousel = () => {
     <>
       <div
         className="relative w-full h-full flex items-center justify-center touch-pan-y"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
       >
+        {/* Mobile touch overlays on sides to capture swipe gestures - leave center open for video interaction */}
+        <div
+          className="absolute inset-y-0 left-0 w-[20%] z-[15] md:hidden"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        />
+        <div
+          className="absolute inset-y-0 right-0 w-[20%] z-[15] md:hidden"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        />
+
         {testimonialVideos.map((video, index) => {
           const offset = index - currentIndex;
           const total = testimonialVideos.length;
