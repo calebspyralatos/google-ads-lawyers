@@ -194,12 +194,14 @@ const TestimonialCarousel = () => {
         {/* Mobile touch overlays on sides to capture swipe gestures - leave center open for video interaction */}
         <div
           className="absolute inset-y-0 left-0 w-[20%] z-[15] md:hidden"
+          style={{ touchAction: 'pan-y' }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         />
         <div
           className="absolute inset-y-0 right-0 w-[20%] z-[15] md:hidden"
+          style={{ touchAction: 'pan-y' }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -291,7 +293,6 @@ const TestimonialCarousel = () => {
 const Index = () => {
   const [selectedTestimonial, setSelectedTestimonial] = React.useState<{ name: string; content: string; image: any } | null>(null);
   const [isCalendlyOpen, setIsCalendlyOpen] = React.useState(false);
-  const [isCalendlyReady, setIsCalendlyReady] = React.useState(false);
 
   React.useEffect(() => {
     // Load Calendly script
@@ -299,34 +300,8 @@ const Index = () => {
     script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
 
-    script.onload = () => {
-      // Pre-initialize the modal Calendly widget so it's ready when user clicks CTA
-      const timer = setTimeout(() => {
-        const preloadWidget = document.getElementById('calendly-preload-widget');
-        if (preloadWidget && (window as any).Calendly) {
-          (window as any).Calendly.initInlineWidget({
-            url: 'https://calendly.com/googleadsbycaleb/new-meeting',
-            parentElement: preloadWidget,
-          });
-          setIsCalendlyReady(true);
-        }
-      }, 500);
-    };
-
     if (!document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')) {
       document.body.appendChild(script);
-    } else {
-      // Script already loaded, initialize widget
-      const timer = setTimeout(() => {
-        const preloadWidget = document.getElementById('calendly-preload-widget');
-        if (preloadWidget && (window as any).Calendly) {
-          (window as any).Calendly.initInlineWidget({
-            url: 'https://calendly.com/googleadsbycaleb/new-meeting',
-            parentElement: preloadWidget,
-          });
-          setIsCalendlyReady(true);
-        }
-      }, 500);
     }
 
     // Listen for Calendly events
@@ -344,16 +319,21 @@ const Index = () => {
     };
   }, []);
 
-  // Lock body scroll when Calendly modal is open
+  // Initialize Calendly widget in modal when it opens
   React.useEffect(() => {
     if (isCalendlyOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+      const timer = setTimeout(() => {
+        const modalWidget = document.getElementById('calendly-modal-widget');
+        if (modalWidget && (window as any).Calendly) {
+          (window as any).Calendly.initInlineWidget({
+            url: 'https://calendly.com/googleadsbycaleb/new-meeting',
+            parentElement: modalWidget,
+          });
+        }
+      }, 100);
+
+      return () => clearTimeout(timer);
     }
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [isCalendlyOpen]);
 
 
@@ -1170,46 +1150,25 @@ const Index = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Preloaded Calendly Modal - always in DOM, shown/hidden based on state */}
-      <div
-        className={cn(
-          "fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-200",
-          isCalendlyOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        )}
-      >
-        {/* Backdrop */}
-        <div
-          className="absolute inset-0 bg-black/80"
-          onClick={() => setIsCalendlyOpen(false)}
-        />
-
-        {/* Modal Content */}
-        <div className="relative max-w-[95vw] md:max-w-[1200px] w-full mx-4 z-10">
+      {/* Calendly Modal */}
+      <Dialog open={isCalendlyOpen} onOpenChange={setIsCalendlyOpen}>
+        <DialogContent className="max-w-[95vw] md:max-w-[1200px] p-0 bg-transparent border-0">
           <div className="relative p-3 md:p-8 rounded-3xl" style={{ background: 'linear-gradient(135deg, #131316 0%, #385e3d 100%)' }}>
-            {/* Close button */}
-            <button
-              onClick={() => setIsCalendlyOpen(false)}
-              className="absolute right-4 top-4 md:right-6 md:top-6 z-20 rounded-full bg-white/10 hover:bg-white/20 p-2 transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-
-            <div className="mb-2 md:mb-6 text-center space-y-0 md:space-y-2">
-              <h2 className="text-base md:text-5xl font-bold text-white leading-tight">
-                Are Your Google Ads In The Wrong Hands?
-              </h2>
-              <br className="hidden md:block" />
-              <p className="text-sm md:text-3xl font-bold text-white">
-                Schedule a call with me.
-              </p>
-            </div>
-            <div id="calendly-preload-widget" className="h-[500px] md:h-[600px]" style={{ minWidth: '320px' }}></div>
+            <DialogHeader className="mb-2 md:mb-6">
+              <DialogTitle className="text-center space-y-0 md:space-y-2">
+                <h2 className="text-base md:text-5xl font-bold text-white leading-tight">
+                  Are Your Google Ads In The Wrong Hands?
+                </h2>
+                <br className="hidden md:block" />
+                <p className="text-sm md:text-3xl font-bold text-white">
+                  Schedule a call with me.
+                </p>
+              </DialogTitle>
+            </DialogHeader>
+            <div id="calendly-modal-widget" className="h-[500px] md:h-[600px]" style={{ minWidth: '320px' }}></div>
           </div>
-        </div>
-      </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
