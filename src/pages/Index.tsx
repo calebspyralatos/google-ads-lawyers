@@ -107,7 +107,7 @@ import logo16 from "@/assets/logos/16.png";
 
 const testimonialVideos = [
   {
-    vimeoUrl: "https://player.vimeo.com/video/1154051482?title=0&byline=0&portrait=0",
+    vimeoUrl: "https://player.vimeo.com/video/1154293627?title=0&byline=0&portrait=0",
     alt: "Client Testimonial 1",
     name: "Jonathan R."
   },
