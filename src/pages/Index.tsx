@@ -292,7 +292,6 @@ const TestimonialCarousel = () => {
 
 const Index = () => {
   const [selectedTestimonial, setSelectedTestimonial] = React.useState<{ name: string; content: string; image: any } | null>(null);
-  const [isCalendlyOpen, setIsCalendlyOpen] = React.useState(false);
 
   React.useEffect(() => {
     // Load Calendly script
@@ -300,8 +299,16 @@ const Index = () => {
     script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
 
+    // Also load Calendly CSS for the popup
+    const link = document.createElement('link');
+    link.href = 'https://assets.calendly.com/assets/external/widget.css';
+    link.rel = 'stylesheet';
+
     if (!document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')) {
       document.body.appendChild(script);
+    }
+    if (!document.querySelector('link[href="https://assets.calendly.com/assets/external/widget.css"]')) {
+      document.head.appendChild(link);
     }
 
     // Listen for Calendly events
@@ -319,22 +326,13 @@ const Index = () => {
     };
   }, []);
 
-  // Initialize Calendly widget in modal when it opens
-  React.useEffect(() => {
-    if (isCalendlyOpen) {
-      const timer = setTimeout(() => {
-        const modalWidget = document.getElementById('calendly-modal-widget');
-        if (modalWidget && (window as any).Calendly) {
-          (window as any).Calendly.initInlineWidget({
-            url: 'https://calendly.com/googleadsbycaleb/new-meeting',
-            parentElement: modalWidget,
-          });
-        }
-      }, 100);
-
-      return () => clearTimeout(timer);
+  const openCalendlyPopup = () => {
+    if ((window as any).Calendly) {
+      (window as any).Calendly.initPopupWidget({
+        url: 'https://calendly.com/googleadsbycaleb/new-meeting'
+      });
     }
-  }, [isCalendlyOpen]);
+  };
 
 
   return (
@@ -353,7 +351,7 @@ const Index = () => {
           <img src={websiteLogo} alt="Logo" className="h-20 md:h-64 w-auto" />
         </div>
         <div className="absolute top-12 -translate-y-1/2 -right-2 md:top-16 md:right-8 z-50 scale-[0.65] md:scale-100">
-          <MovingBorderButton duration={6000} onClick={() => setIsCalendlyOpen(true)}>
+          <MovingBorderButton duration={6000} onClick={() => openCalendlyPopup()}>
             Book a Call
           </MovingBorderButton>
         </div>
@@ -380,7 +378,7 @@ const Index = () => {
             </div>
 
             <div className="pt-2">
-              <MovingBorderButton duration={6000} onClick={() => setIsCalendlyOpen(true)}>
+              <MovingBorderButton duration={6000} onClick={() => openCalendlyPopup()}>
                 Book a Call
               </MovingBorderButton>
             </div>
@@ -506,7 +504,7 @@ const Index = () => {
           </div>
 
           <div className="text-center mt-4 md:mt-8">
-            <MovingBorderButton duration={6000} onClick={() => setIsCalendlyOpen(true)}>
+            <MovingBorderButton duration={6000} onClick={() => openCalendlyPopup()}>
               Book a Call
             </MovingBorderButton>
           </div>
@@ -676,7 +674,7 @@ const Index = () => {
           </div>
 
           <div className="text-center mt-8 md:mt-16">
-            <MovingBorderButton duration={6000} onClick={() => setIsCalendlyOpen(true)}>
+            <MovingBorderButton duration={6000} onClick={() => openCalendlyPopup()}>
               Book a Call
             </MovingBorderButton>
           </div>
@@ -1044,7 +1042,7 @@ const Index = () => {
 
         <div className="container mx-auto px-4">
           <div className="text-center mt-8 md:mt-12">
-            <MovingBorderButton duration={6000} onClick={() => setIsCalendlyOpen(true)}>
+            <MovingBorderButton duration={6000} onClick={() => openCalendlyPopup()}>
               Book a Call
             </MovingBorderButton>
           </div>
@@ -1150,25 +1148,6 @@ const Index = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Calendly Modal */}
-      <Dialog open={isCalendlyOpen} onOpenChange={setIsCalendlyOpen}>
-        <DialogContent className="max-w-[95vw] md:max-w-[1200px] p-0 bg-transparent border-0">
-          <div className="relative p-3 md:p-8 rounded-3xl" style={{ background: 'linear-gradient(135deg, #131316 0%, #385e3d 100%)' }}>
-            <DialogHeader className="mb-2 md:mb-6">
-              <DialogTitle className="text-center space-y-0 md:space-y-2">
-                <h2 className="text-base md:text-5xl font-bold text-white leading-tight">
-                  Are Your Google Ads In The Wrong Hands?
-                </h2>
-                <br className="hidden md:block" />
-                <p className="text-sm md:text-3xl font-bold text-white">
-                  Schedule a call with me.
-                </p>
-              </DialogTitle>
-            </DialogHeader>
-            <div id="calendly-modal-widget" className="h-[500px] md:h-[600px]" style={{ minWidth: '320px' }}></div>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
