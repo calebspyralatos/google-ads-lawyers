@@ -242,7 +242,7 @@ const TestimonialCarousel = () => {
                 <div className="relative flex-1 rounded-3xl shadow-2xl overflow-visible">
                   {/* Green gradient border for active video */}
                   {isCenter && (
-                    <div className="absolute -inset-[1.5px] rounded-3xl bg-gradient-to-r from-green-800 via-emerald-800 to-green-900 -z-10" />
+                    <div className="absolute -inset-[1.5px] rounded-3xl bg-gradient-to-r from-green-950 via-emerald-950 to-green-950 -z-10" />
                   )}
 
                   <div className={cn(
@@ -338,7 +338,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="px-4 md:px-8 lg:px-16 pt-4 md:pt-16 pb-4 md:pb-12 relative overflow-hidden">
+      <section className="px-4 md:px-8 lg:px-16 pt-4 md:pt-8 pb-4 md:pb-12 relative overflow-hidden">
         <div
           className="absolute -top-40 -left-40 w-[400px] h-[400px] md:w-[700px] md:h-[700px] rounded-full pointer-events-none opacity-30"
           style={{
@@ -355,7 +355,7 @@ const Index = () => {
             Book a Call
           </MovingBorderButton>
         </div>
-        <div className="max-w-[1200px] mx-auto flex flex-col md:grid md:grid-cols-2 gap-0 md:gap-12 items-center relative z-10 mt-24 md:mt-32">
+        <div className="max-w-[1200px] mx-auto flex flex-col md:grid md:grid-cols-2 gap-0 md:gap-12 items-center relative z-10 mt-10 md:mt-24">
           {/* Image first on mobile, second on desktop */}
           <div className="relative animate-fade-in-up flex justify-center items-center md:-mt-16 order-1 md:order-2">
             <img
@@ -367,7 +367,7 @@ const Index = () => {
 
           <div className="space-y-2 md:space-y-4 animate-fade-in text-center md:text-left order-2 md:order-1">
             <div className="backdrop-blur-sm rounded-2xl p-4 shadow-lg md:p-0 md:bg-transparent md:backdrop-blur-none md:shadow-none md:rounded-none bg-[#131316] md:!bg-transparent">
-              <h1 className="text-3xl md:text-7xl font-bold leading-relaxed">
+              <h1 className="text-3xl md:text-7xl font-bold leading-relaxed md:leading-[1.3]">
                 I specialize in Google Ads for<br className="hidden md:block" /><span className="inline-block px-3 text-white rounded-full whitespace-nowrap md:mt-3" style={{ backgroundColor: '#385f3e', verticalAlign: 'middle', paddingTop: '0.5rem', paddingBottom: '0.75rem' }}>local businesses.</span> <span className="underline">Only.</span>
               </h1>
             </div>
@@ -535,7 +535,7 @@ const Index = () => {
         />
         <div className="max-w-[1400px] mx-auto relative z-10">
           <h2 className="text-2xl md:text-5xl font-bold text-center mb-3 md:mb-4">
-            What It's Like Working With Me
+            Client Testimonials
           </h2>
           <div className="h-1 w-32 bg-gradient-to-r from-primary to-accent mx-auto mb-4 md:mb-8 rounded-full" />
 
@@ -1066,7 +1066,7 @@ const Index = () => {
                 <div className="space-y-4 md:space-y-6 max-w-[320px] md:max-w-none">
                   <div>
                     <h2 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 text-left flex items-center flex-wrap gap-2 md:gap-3">
-                      <span>What I</span> <span className="inline-block px-2 md:px-3 text-white rounded-full text-2xl md:text-5xl" style={{ backgroundColor: '#de3323' }}>Can't</span> <span>Promise</span>
+                      <span>What I</span> <span className="inline-block px-2 md:px-4 pb-1 md:pb-2 text-white rounded-full text-2xl md:text-5xl" style={{ backgroundColor: '#de3323' }}>Can't</span> <span>Promise</span>
                     </h2>
                     <div className="space-y-2 md:space-y-4 text-base md:text-2xl text-white text-left">
                       <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />Overnight success.</p>
@@ -1077,7 +1077,7 @@ const Index = () => {
 
                   <div className="border-t border-border/30 pt-4 md:pt-6">
                     <h2 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 text-left flex items-center flex-wrap gap-2 md:gap-3">
-                      <span>What I</span> <span className="inline-block px-2 md:px-3 text-white rounded-full text-2xl md:text-5xl" style={{ backgroundColor: '#385f3e' }}>Can</span> <span>Promise</span>
+                      <span>What I</span> <span className="inline-block px-2 md:px-4 pb-1 md:pb-2 text-white rounded-full text-2xl md:text-5xl" style={{ backgroundColor: '#385f3e' }}>Can</span> <span>Promise</span>
                     </h2>
                     <div className="space-y-2 md:space-y-4 text-base md:text-2xl text-white text-left">
                       <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><CheckCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#6bc741' }} />Always being 100% honest with you.</p>
@@ -1094,7 +1094,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="px-4 md:px-8 lg:px-16 py-12 md:py-20 bg-card/30 relative overflow-hidden">
+      <section className="px-4 md:px-8 lg:px-16 pt-12 md:pt-20 pb-0 bg-card/30 relative overflow-hidden">
         <div className="max-w-[1100px] mx-auto relative z-10">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4">
@@ -1110,7 +1110,7 @@ const Index = () => {
             <div className="calendly-inline-widget" data-url="https://calendly.com/googleadsbycaleb/new-meeting" style={{ minWidth: '320px', height: '700px' }}></div>
           </div>
 
-          <div className="flex justify-center mt-12 md:mt-16">
+          <div className="flex justify-center">
             <img src={websiteLogo} alt="Logo" className="h-48 md:h-80 w-auto" />
           </div>
         </div>
