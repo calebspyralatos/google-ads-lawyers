@@ -348,9 +348,9 @@ const Index = () => {
           }}
         />
         <div className="absolute top-12 left-4 -translate-y-1/2 md:left-1/2 md:-translate-x-1/2 md:top-16 z-50">
-          <img src={websiteLogo} alt="Logo" className="h-20 md:h-64 w-auto" />
+          <img src={websiteLogo} alt="Logo" className="h-28 md:h-64 w-auto" />
         </div>
-        <div className="absolute top-12 -translate-y-1/2 -right-2 md:top-16 md:right-8 z-50 scale-[0.65] md:scale-100">
+        <div className="absolute top-12 -translate-y-1/2 -right-2 md:top-16 md:right-8 z-50 scale-[0.8] md:scale-100">
           <MovingBorderButton duration={6000} onClick={() => openCalendlyPopup()}>
             Book a Call
           </MovingBorderButton>
@@ -372,7 +372,7 @@ const Index = () => {
               </h1>
             </div>
             <div className="space-y-2 md:space-y-4">
-              <p className="text-base md:text-xl text-white">
+              <p className="text-lg md:text-2xl text-white">
                 If you run a local business, I will help you generate more revenue by increasing your number of leads, calls, and store visits.
               </p>
             </div>
@@ -393,10 +393,10 @@ const Index = () => {
           <div className="relative backdrop-blur-sm rounded-2xl p-4 md:p-7 shadow-lg" style={{ backgroundColor: '#131316' }}>
             <div className="grid md:grid-cols-2 gap-4 md:gap-8 items-center">
               <div className="space-y-2 md:space-y-4 animate-fade-in max-w-2xl">
-                <h2 className="text-3xl md:text-7xl font-bold leading-tight">
+                <h2 className="text-4xl md:text-7xl font-bold leading-tight">
                   Hi, I'm Caleb.
                 </h2>
-                <p className="text-base md:text-xl text-white leading-relaxed">
+                <p className="text-lg md:text-xl text-white leading-relaxed">
                   I've built my career on UpWork as a freelancer and I specialize in Google Ads and Google Local Ads,<br className="hidden md:inline" />
                   <span className="inline-block px-2 text-white rounded-full mt-2" style={{ backgroundColor: '#385f3e', paddingTop: '0.25rem', paddingBottom: '0.5rem' }}>only for local businesses.</span>
                 </p>
@@ -442,63 +442,63 @@ const Index = () => {
       </section>
 
       {/* What Makes Me Different */}
-      <section className="px-4 md:px-8 lg:px-16 py-12 md:py-32 bg-gradient-to-b from-background to-card/20 relative md:min-h-screen flex items-center">
+      <section className="px-4 md:px-8 lg:px-16 pt-6 md:pt-32 pb-12 md:pb-32 bg-gradient-to-b from-background to-card/20 relative md:min-h-screen flex items-center">
         <div className="max-w-[1000px] mx-auto relative z-10 w-full">
-          <h2 className="text-2xl md:text-5xl font-bold text-center mb-2">
-            What Makes Me <span className="inline-block px-2 md:px-4 py-1 md:py-3 text-white rounded-full text-2xl md:text-5xl" style={{ backgroundColor: '#385f3e', verticalAlign: 'text-bottom' }}>Different</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-2">
+            What Makes Me <span className="inline-block px-2 md:px-4 py-1 md:py-3 text-white rounded-full text-3xl md:text-5xl" style={{ backgroundColor: '#385f3e', verticalAlign: 'text-bottom' }}>Different</span>
           </h2>
-          <div className="h-1 w-32 bg-gradient-to-r from-primary to-accent mx-auto mb-4 md:mb-8 rounded-full" />
+          <div className="h-1 w-32 bg-gradient-to-r from-primary to-accent mx-auto mb-6 md:mb-8 rounded-full" />
 
           <div className="space-y-3 md:space-y-5 text-center">
-            <p className="text-base md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
+            <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
               I am a freelancer, and will always be.
             </p>
 
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
-            <p className="text-base md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
+            <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
               Therefore, I am 100% the person running your ads.
             </p>
 
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
-            <p className="text-base md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
+            <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
               So, no agencies or outsourcing the work to someone else.
             </p>
 
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
-            <p className="text-base md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
+            <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
               I wake up & go to bed managing Google Ads for local businesses. Only.
             </p>
 
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
-            <p className="text-base md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
+            <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
               Also, 95% of media buyers have never risked their own money on ads.
             </p>
 
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
-            <p className="text-base md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
+            <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
               But, I have. Running ads for my own page and Google Reviews course.
             </p>
 
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
-            <p className="text-base md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
+            <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
               So, I know the frustration of spending hard-earned money without seeing results.
             </p>
 
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
-            <p className="text-base md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
+            <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
               That's why I handle your ad spend with the same care I give my own.
             </p>
 
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
-            <p className="text-base md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
+            <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
               When it comes to helping out local business owners, like you, on anything related to Google, I've seen it all.
             </p>
           </div>
@@ -534,7 +534,7 @@ const Index = () => {
           }}
         />
         <div className="max-w-[1400px] mx-auto relative z-10">
-          <h2 className="text-2xl md:text-5xl font-bold text-center mb-3 md:mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4">
             Client Testimonials
           </h2>
           <div className="h-1 w-32 bg-gradient-to-r from-primary to-accent mx-auto mb-4 md:mb-8 rounded-full" />
@@ -548,10 +548,10 @@ const Index = () => {
       {/* Recent Projects */}
       <section className="px-4 md:px-8 lg:px-16 py-12 md:py-20 relative bg-background">
         <div className="max-w-[900px] mx-auto relative z-10">
-          <h2 className="text-2xl md:text-5xl font-bold text-center mb-3 md:mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4">
             Recent Projects
           </h2>
-          <div className="text-center text-white mb-4 md:mb-6 text-sm md:text-xl">
+          <div className="text-center text-white mb-4 md:mb-6 text-base md:text-2xl">
             <p>All conversions and CPL reflect calls, form submissions, and/or store visits, only.</p>
             <p>No soft conversions are included, such as clicks, page views, etc.</p>
           </div>
@@ -686,7 +686,7 @@ const Index = () => {
         <div className="max-w-[1200px] mx-auto relative z-10">
           <div className="grid md:grid-cols-[1fr_1.3fr] gap-6 md:gap-12 items-center">
             <div className="space-y-4 md:space-y-8 animate-fade-in">
-              <h2 className="text-2xl md:text-5xl font-bold leading-tight text-center">
+              <h2 className="text-3xl md:text-5xl font-bold leading-tight text-center">
                 Creator of the<br />Best-Selling Google Reviews Course
               </h2>
 
@@ -737,10 +737,10 @@ const Index = () => {
       <section className="py-12 md:py-20 bg-card/30 overflow-hidden relative">
         <div className="px-4 md:px-8 lg:px-16 relative z-10">
           <div className="max-w-[1100px] mx-auto">
-            <h2 className="text-2xl md:text-5xl font-bold text-center mb-3 md:mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4">
               People Who Trusted Me
             </h2>
-            <p className="text-center text-white mb-4 md:mb-6 text-sm md:text-xl">
+            <p className="text-center text-white mb-4 md:mb-6 text-base md:text-2xl">
               The reviews below are real and can be verified on my{" "}
               <a
                 href="https://www.upwork.com/freelancers/localgoogleadsbycaleb"
@@ -869,7 +869,7 @@ const Index = () => {
                     <Star key={i} className="w-4 md:w-5 h-4 md:h-5" fill="#DF7606" color="#DF7606" />
                   ))}
                 </div>
-                <p className="text-sm md:text-lg text-foreground mb-3 md:mb-5 leading-relaxed line-clamp-6">
+                <p className="text-base md:text-lg text-foreground mb-3 md:mb-5 leading-relaxed line-clamp-6">
                   {testimonial.content}
                 </p>
                 <div className="h-1 w-full bg-gradient-to-r from-primary to-accent mb-3 md:mb-5 rounded-full"></div>
@@ -1050,10 +1050,10 @@ const Index = () => {
       </section>
 
       {/* What I Can Promise */}
-      <section className="px-4 md:px-8 lg:px-16 pt-6 md:pt-8 pb-12 md:pb-20 bg-gradient-to-b from-card/20 to-background relative">
+      <section className="px-4 md:px-8 lg:px-16 pt-0 md:pt-8 pb-12 md:pb-20 bg-gradient-to-b from-card/20 to-background relative">
         <div className="max-w-[1000px] mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-0 md:gap-12 items-center">
-            <div className="relative animate-fade-in flex justify-center md:-mt-32">
+            <div className="relative animate-fade-in flex justify-center -mt-8 md:-mt-32">
               <img
                 src={promiseProfile}
                 alt="Caleb Promise"
@@ -1097,7 +1097,7 @@ const Index = () => {
       <section className="px-4 md:px-8 lg:px-16 pt-12 md:pt-20 pb-0 bg-card/30 relative overflow-hidden">
         <div className="max-w-[1100px] mx-auto relative z-10">
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4">
               Are Your Google Ads In The Wrong Hands?
             </h2>
             <div className="h-1 w-32 bg-gradient-to-r from-primary to-accent mx-auto mb-4 md:mb-6 rounded-full" />
