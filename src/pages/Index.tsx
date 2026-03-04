@@ -86,6 +86,7 @@ import andyG from "@/assets/Andy G.jpeg";
 import danielB from "@/assets/Daniel.webp";
 import nathanielC from "@/assets/Nathaniel.jpg";
 import websiteLogo from "@/assets/website-logo.png";
+import nonCompete from "@/assets/non-compete.png";
 
 // Logo imports
 import logo1 from "@/assets/logos/1.png";
@@ -109,7 +110,8 @@ const testimonialVideos = [
   {
     vimeoUrl: "https://player.vimeo.com/video/1154293627?title=0&byline=0&portrait=0",
     alt: "Client Testimonial 1",
-    name: "Jonathan R."
+    name: "Jonathan R.",
+    subtitle: "Appellate/Criminal Lawyer, New York"
   },
   {
     vimeoUrl: "https://player.vimeo.com/video/1154051560?title=0&byline=0&portrait=0",
@@ -262,6 +264,7 @@ const TestimonialCarousel = () => {
                 </div>
                 <div className="pt-2 md:pt-4">
                   <p className="text-base md:text-xl font-bold text-white text-center">{video.name}</p>
+                  {video.subtitle && <p className="text-xs md:text-sm text-white/60 text-center mt-0.5">{video.subtitle}</p>}
                 </div>
               </div>
             </div>
@@ -329,7 +332,7 @@ const Index = () => {
   const openCalendlyPopup = () => {
     if ((window as any).Calendly) {
       (window as any).Calendly.initPopupWidget({
-        url: 'https://calendly.com/googleadsbycaleb/new-meeting'
+        url: 'https://calendly.com/googleadsbycaleb/new-meetingg'
       });
     }
   };
@@ -368,12 +371,12 @@ const Index = () => {
           <div className="space-y-2 md:space-y-4 animate-fade-in text-center md:text-left order-2 md:order-1">
             <div className="backdrop-blur-sm rounded-2xl p-4 shadow-lg md:p-0 md:bg-transparent md:backdrop-blur-none md:shadow-none md:rounded-none bg-[#131316] md:!bg-transparent">
               <h1 className="text-3xl md:text-7xl font-bold leading-relaxed md:leading-[1.3]">
-                I specialize in Google Ads for<br className="hidden md:block" /><span className="inline-block px-3 text-white rounded-full whitespace-nowrap md:mt-3" style={{ backgroundColor: '#385f3e', verticalAlign: 'middle', paddingTop: '0.5rem', paddingBottom: '0.75rem' }}>local businesses.</span> <span className="underline">Only.</span>
+                I specialize in Google Ads for<br className="hidden md:block" /><span className="inline-block px-3 text-white rounded-full whitespace-nowrap md:mt-3" style={{ backgroundColor: '#385f3e', verticalAlign: 'middle', paddingTop: '0.5rem', paddingBottom: '0.75rem' }}>Law Firms</span>
               </h1>
             </div>
             <div className="space-y-2 md:space-y-4">
               <p className="text-lg md:text-2xl text-white">
-                If you run a local business, I will help you generate more revenue by increasing your number of leads, calls, and store visits.
+                If you own a law firm, I will help you bring in more high-value cases and increase your revenue, by driving in more qualified leads and phone calls.
               </p>
             </div>
 
@@ -397,8 +400,8 @@ const Index = () => {
                   Hi, I'm Caleb.
                 </h2>
                 <p className="text-lg md:text-xl text-white leading-relaxed">
-                  I've built my career on UpWork as a freelancer and I specialize in Google Ads and Google Local Ads,<br className="hidden md:inline" />
-                  <span className="inline-block px-2 text-white rounded-full mt-2" style={{ backgroundColor: '#385f3e', paddingTop: '0.25rem', paddingBottom: '0.5rem' }}>only for local businesses.</span>
+                  I've built my career on UpWork as a freelancer, and I specialize in Google Ads and Google Local Ads,<br className="hidden md:inline" />
+                  <span className="inline-block px-2 text-white rounded-full mt-2" style={{ backgroundColor: '#385f3e', paddingTop: '0.25rem', paddingBottom: '0.5rem' }}>for law firms.</span>
                 </p>
               </div>
 
@@ -469,37 +472,31 @@ const Index = () => {
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
             <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
-              I wake up & go to bed managing Google Ads for local businesses. Only.
+              I wake up & go to bed managing Google Ads for law firms.
             </p>
 
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
             <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
-              Also, 95% of media buyers have never risked their own money on ads.
+              Also, most marketers lack extensive experience running ads for law firms.
             </p>
 
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
             <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
-              But, I have. Running ads for my own page and Google Reviews course.
+              But, I have. Managing Google Ads repeatedly in one of the most expensive ad markets (the legal space), side by side with lawyers just like you.
             </p>
 
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
             <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
-              So, I know the frustration of spending hard-earned money without seeing results.
+              So, I understand what it means to pay for very expensive clicks that don't convert.
             </p>
 
             <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
 
             <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
-              That's why I handle your ad spend with the same care I give my own.
-            </p>
-
-            <div className="border-b border-white/20 w-48 md:w-64 mx-auto" />
-
-            <p className="text-lg md:text-2xl text-white leading-relaxed animate-fade-in font-semibold">
-              When it comes to helping out local business owners, like you, on anything related to Google, I've seen it all.
+              When it comes to working with law firm owners, like you, on anything related to Google Ads, I've seen it all.
             </p>
           </div>
 
@@ -507,6 +504,63 @@ const Index = () => {
             <MovingBorderButton duration={6000} onClick={() => openCalendlyPopup()}>
               Book a Call
             </MovingBorderButton>
+          </div>
+        </div>
+      </section>
+
+      {/* Non-Compete Policy Section */}
+      <section className="px-4 md:px-8 lg:px-16 py-12 md:py-20 bg-card/30 relative">
+        <div className="max-w-[1200px] mx-auto relative z-10">
+          <div className="grid md:grid-cols-[1.3fr_1fr] gap-6 md:gap-12 items-center">
+            <div className="space-y-4 md:space-y-6 animate-fade-in order-2 md:order-1">
+              <h2 className="text-3xl md:text-5xl font-bold leading-tight text-center">
+                My Strict Non-Compete Policy
+              </h2>
+
+              <div className="space-y-3 md:space-y-5 text-base md:text-xl text-white leading-relaxed text-center">
+                <p>
+                  Most agencies and freelancers work with multiple law firms that often are in the same practice area and state/city.
+                </p>
+
+                <p>
+                  Firms pay high management fees each month, while their data and winning strategies are shared across competing ad accounts in the same market.
+                </p>
+
+                <p>
+                  It's unfair — and more importantly, <span className="inline-block px-2 text-white rounded-full" style={{ backgroundColor: '#de3323', paddingTop: '0.15rem', paddingBottom: '0.35rem' }}>unethical.</span>
+                </p>
+
+                <p>
+                  I take a different approach.
+                </p>
+
+                <p>
+                  Out of respect for my clients, when I work with a law firm, I operate under a strict <span className="inline-block px-2 text-white rounded-full" style={{ backgroundColor: '#385f3e', paddingTop: '0.15rem', paddingBottom: '0.35rem' }}>non-compete policy.</span>
+                </p>
+
+                <p>
+                  What this means is that if I manage the Google Ads for your firm, I will not work with another competing firm in your state and practice area for as long as we work together.
+                </p>
+
+                <div className="space-y-2 md:space-y-4 text-left inline-block">
+                  <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><CheckCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#6bc741' }} />No conflicts of interest.</p>
+                  <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><CheckCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#6bc741' }} />No competing strategies.</p>
+                  <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><CheckCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#6bc741' }} />No divided attention.</p>
+                </div>
+
+                <p className="pt-2">
+                  <span className="inline-block px-2 text-white rounded-full text-base md:text-xl" style={{ backgroundColor: '#385f3e', paddingTop: '0.25rem', paddingBottom: '0.5rem' }}>Your firm retains full exclusivity.</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="relative animate-fade-in-up order-1 md:order-2 flex justify-center">
+              <img
+                src={nonCompete}
+                alt="Non-Compete Policy"
+                className="w-3/4 md:w-full object-contain"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -535,7 +589,7 @@ const Index = () => {
         />
         <div className="max-w-[1400px] mx-auto relative z-10">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-3 md:mb-4">
-            Client Testimonials
+            What It's Like Working With Me
           </h2>
           <div className="h-1 w-32 bg-gradient-to-r from-primary to-accent mx-auto mb-4 md:mb-8 rounded-full" />
 
@@ -552,7 +606,7 @@ const Index = () => {
             Recent Projects
           </h2>
           <div className="text-center text-white mb-4 md:mb-6 text-base md:text-2xl">
-            <p>All conversions and CPL reflect calls, form submissions, and/or store visits, only.</p>
+            <p>All conversions and CPL reflect form submissions and phone calls, only.</p>
             <p>No soft conversions are included, such as clicks, page views, etc.</p>
           </div>
           <div className="h-1 w-32 bg-gradient-to-r from-primary to-accent mx-auto mb-8 md:mb-16 rounded-full" />
@@ -562,7 +616,7 @@ const Index = () => {
             <div className="grid md:grid-cols-[1fr_1.1fr] gap-4 md:gap-8 items-center">
               <div className="space-y-3 md:space-y-6 animate-fade-in">
                 <h3 className="text-2xl md:text-5xl font-bold text-center">
-                  Local Business<br />
+                  Law Firm<br />
                   Case Study #1
                 </h3>
                 <br className="hidden md:block" />
@@ -570,19 +624,19 @@ const Index = () => {
                   <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
                     <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">Amount Spent</div>
                     <div className="text-2xl md:text-4xl font-bold" style={{ color: '#6bc741' }}>
-                      <CountUpNumber value="$9.6K" />
+                      <CountUpNumber value="$11.9K" />
                     </div>
                   </div>
                   <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
                     <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">CPL</div>
                     <div className="text-2xl md:text-4xl font-bold" style={{ color: '#c5fc68' }}>
-                      <CountUpNumber value="$19.63" />
+                      <CountUpNumber value="$125.81" />
                     </div>
                   </div>
                 </div>
                 <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
                   <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">Period</div>
-                  <div className="text-xl md:text-3xl font-bold text-white">October 2025</div>
+                  <div className="text-xl md:text-3xl font-bold text-white">January 2026</div>
                 </div>
               </div>
               <div className="relative group animate-fade-in-up">
@@ -609,7 +663,7 @@ const Index = () => {
               </div>
               <div className="space-y-3 md:space-y-6 order-1 md:order-2 animate-fade-in">
                 <h3 className="text-2xl md:text-5xl font-bold text-center">
-                  Local Business<br />
+                  Law Firm<br />
                   Case Study #2
                 </h3>
                 <br className="hidden md:block" />
@@ -617,19 +671,19 @@ const Index = () => {
                   <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
                     <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">Amount Spent</div>
                     <div className="text-2xl md:text-4xl font-bold" style={{ color: '#6bc741' }}>
-                      <CountUpNumber value="$65K" />
+                      <CountUpNumber value="$56.7K" />
                     </div>
                   </div>
                   <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
                     <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">CPL</div>
                     <div className="text-2xl md:text-4xl font-bold" style={{ color: '#c5fc68' }}>
-                      <CountUpNumber value="$3.10" />
+                      <CountUpNumber value="$132" />
                     </div>
                   </div>
                 </div>
                 <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
                   <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">Period</div>
-                  <div className="text-xl md:text-3xl font-bold text-white">October 2024 - October 2025</div>
+                  <div className="text-xl md:text-3xl font-bold text-white">January 2025 - January 2026</div>
                 </div>
               </div>
             </div>
@@ -638,7 +692,7 @@ const Index = () => {
             <div className="grid md:grid-cols-[1fr_1.1fr] gap-4 md:gap-8 items-center">
               <div className="space-y-3 md:space-y-6 animate-fade-in">
                 <h3 className="text-2xl md:text-5xl font-bold text-center">
-                  Local Business<br />
+                  Law Firm<br />
                   Case Study #3
                 </h3>
                 <br className="hidden md:block" />
@@ -646,19 +700,19 @@ const Index = () => {
                   <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
                     <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">Amount Spent</div>
                     <div className="text-2xl md:text-4xl font-bold" style={{ color: '#6bc741' }}>
-                      <CountUpNumber value="$2.4K" />
+                      <CountUpNumber value="$3.5K" />
                     </div>
                   </div>
                   <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
                     <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">CPL</div>
                     <div className="text-2xl md:text-4xl font-bold" style={{ color: '#c5fc68' }}>
-                      <CountUpNumber value="$40.28" />
+                      <CountUpNumber value="$97.50" />
                     </div>
                   </div>
                 </div>
                 <div className="pb-3 md:pb-6 border-b-2 rounded-lg text-center" style={{ borderColor: '#6bc741' }}>
                   <div className="text-xs md:text-sm text-white/60 mb-1 md:mb-2 uppercase tracking-wide">Period</div>
-                  <div className="text-xl md:text-3xl font-bold text-white">October 2025</div>
+                  <div className="text-xl md:text-3xl font-bold text-white">January 2026</div>
                 </div>
               </div>
               <div className="relative group animate-fade-in-up">
@@ -692,11 +746,11 @@ const Index = () => {
 
               <div className="space-y-3 md:space-y-6 text-base md:text-xl text-white leading-relaxed text-center">
                 <p>
-                  Most "review advice" online is outdated, unrealistic, or even dangerous.
+                  For local businesses, Google Reviews have become a critical factor in building trust and credibility and in determining whether potential clients decide to contact you.
                 </p>
 
                 <p>
-                  Local business owners, like you, needed something that actually works.
+                  And local businesses, like your law firm, needed something that actually works.
                 </p>
 
                 <p>
@@ -708,15 +762,15 @@ const Index = () => {
                 </p>
 
                 <p>
-                  So, I built it — the most advanced, proven, and effective system for gathering and managing Google reviews for local businesses.
+                  So, I built it — the most advanced, proven, and effective system for gathering and managing Google reviews for any local business, especially law firms.
                 </p>
 
                 <p>
-                  And each time clients use it, together with Google Ads, it has helped them outrank their competition, stand out in their area & niche, and increase their revenue consistently.
+                  And each time lawyers have used it alongside Google Ads, it has helped them outrank competitors, stand out in their area & niche, and increase revenue consistently.
                 </p>
 
                 <p className="pt-4 md:pt-0">
-                  <span className="inline-block px-2 text-white rounded-full text-base md:text-xl" style={{ backgroundColor: '#385f3e', paddingTop: '0.25rem', paddingBottom: '0.5rem' }}>Every client I work with gets free lifetime access to it.</span>
+                  <span className="inline-block px-2 text-white rounded-full text-base md:text-xl" style={{ backgroundColor: '#385f3e', paddingTop: '0.25rem', paddingBottom: '0.5rem' }}>Every law firm owner I work with gets free lifetime access to it.</span>
                 </p>
               </div>
             </div>
@@ -1069,9 +1123,9 @@ const Index = () => {
                       <span>What I</span> <span className="inline-block px-2 md:px-4 pb-1 md:pb-2 text-white rounded-full text-2xl md:text-5xl" style={{ backgroundColor: '#de3323' }}>Can't</span> <span>Promise</span>
                     </h2>
                     <div className="space-y-2 md:space-y-4 text-base md:text-2xl text-white text-left">
-                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />Overnight success.</p>
-                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />That you'll become a millionaire.</p>
-                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />That every month will be profitable.</p>
+                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />Results overnight.</p>
+                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />That every click will turn into a lead.</p>
+                      <p className="font-semibold flex items-center justify-start gap-2 md:gap-3"><XCircle className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" style={{ color: '#de3323' }} />That every single month will land high-value cases.</p>
                     </div>
                   </div>
 
@@ -1098,7 +1152,7 @@ const Index = () => {
         <div className="max-w-[1100px] mx-auto relative z-10">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4">
-              Are Your Google Ads In The Wrong Hands?
+              Are Your Law Firm's Google Ads in The Wrong Hands?
             </h2>
             <div className="h-1 w-32 bg-gradient-to-r from-primary to-accent mx-auto mb-4 md:mb-6 rounded-full" />
             <p className="text-xl md:text-3xl text-white font-bold">
@@ -1107,7 +1161,7 @@ const Index = () => {
           </div>
 
           <div className="relative p-4 md:p-8 rounded-3xl max-w-[1200px] mx-auto" style={{ background: 'linear-gradient(135deg, #131316 0%, #385e3d 100%)' }}>
-            <div className="calendly-inline-widget" data-url="https://calendly.com/googleadsbycaleb/new-meeting" style={{ minWidth: '320px', height: '700px' }}></div>
+            <div className="calendly-inline-widget" data-url="https://calendly.com/googleadsbycaleb/new-meetingg" style={{ minWidth: '320px', height: '700px' }}></div>
           </div>
 
           <div className="flex justify-center">
