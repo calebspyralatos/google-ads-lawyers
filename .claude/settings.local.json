@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:21st.dev)",
-      "Bash(copy \"C:\\\\Users\\\\firul\\\\Downloads\\\\favicon.png\" \"C:\\\\Users\\\\firul\\\\Caleb\\\\hey-buddy-thing\\\\public\\\\favicon.png\")"
+      "Bash(copy \"C:\\\\Users\\\\firul\\\\Downloads\\\\favicon.png\" \"C:\\\\Users\\\\firul\\\\Caleb\\\\hey-buddy-thing\\\\public\\\\favicon.png\")",
+      "Bash(gh repo create:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)"
     ]
   }
 }
