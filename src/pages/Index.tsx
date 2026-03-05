@@ -359,7 +359,7 @@ const Index = () => {
           </MovingBorderButton>
         </div>
         <div className="max-w-[1200px] mx-auto flex flex-col md:grid md:grid-cols-2 gap-0 md:gap-12 items-center relative z-10 mt-10 md:mt-24">
-          {/* Image first on mobile, second on desktop */}
+          
           <div className="relative animate-fade-in-up flex justify-center items-center md:-mt-16 order-1 md:order-2">
             <img
               src={heroProfile}
