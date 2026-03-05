@@ -371,7 +371,7 @@ const Index = () => {
           <div className="space-y-2 md:space-y-4 animate-fade-in text-center md:text-left order-2 md:order-1">
             <div className="backdrop-blur-sm rounded-2xl p-4 shadow-lg md:p-0 md:bg-transparent md:backdrop-blur-none md:shadow-none md:rounded-none bg-[#131316] md:!bg-transparent">
               <h1 className="text-3xl md:text-7xl font-bold leading-relaxed md:leading-[1.3]">
-                I specialize in Google Ads for<br className="hidden md:block" /><span className="inline-block px-3 text-white rounded-full whitespace-nowrap md:mt-3" style={{ backgroundColor: '#385f3e', verticalAlign: 'middle', paddingTop: '0.5rem', paddingBottom: '0.75rem' }}>Law Firms</span>
+                I specialize in Google Ads for <br className="hidden md:block" /><span className="inline-block px-2 md:px-3 pt-1 pb-1.5 md:pt-2 md:pb-3 text-white rounded-full whitespace-nowrap md:mt-3" style={{ backgroundColor: '#385f3e', verticalAlign: 'middle' }}>Law Firms</span>
               </h1>
             </div>
             <div className="space-y-2 md:space-y-4">
