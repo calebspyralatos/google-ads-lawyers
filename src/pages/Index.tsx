@@ -418,7 +418,7 @@ const Index = () => {
       </div>
 
       {/* Logo Carousel */}
-      <section className="pt-0 pb-6 md:pb-12 bg-background/50 overflow-hidden">
+      {/* <section className="pt-0 pb-6 md:pb-12 bg-background/50 overflow-hidden">
         <div className="relative mx-auto flex items-center justify-center">
           <Carousel
             opts={{ loop: true, watchDrag: false }}
@@ -442,7 +442,7 @@ const Index = () => {
             </CarouselContent>
           </Carousel>
         </div>
-      </section>
+      </section> */}
 
       {/* What Makes Me Different */}
       <section className="px-4 md:px-8 lg:px-16 pt-6 md:pt-32 pb-12 md:pb-32 bg-gradient-to-b from-background to-card/20 relative md:min-h-screen flex items-center">
