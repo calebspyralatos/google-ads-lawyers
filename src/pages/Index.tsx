@@ -401,7 +401,7 @@ const Index = () => {
                 </h2>
                 <p className="text-lg md:text-xl text-white leading-relaxed">
                   I've built my career on UpWork as a freelancer, and I specialize in Google Ads and Google Local Ads,<br className="hidden md:inline" />
-                  <span className="inline-block px-2 text-white rounded-full mt-2" style={{ backgroundColor: '#385f3e', paddingTop: '0.25rem', paddingBottom: '0.5rem' }}>for law firms.</span>
+                  <span className="inline-block px-2 text-white rounded-full mt-2 pt-0 pb-0.5 md:pt-1 md:pb-2" style={{ backgroundColor: '#385f3e' }}>for law firms.</span>
                 </p>
               </div>
 
